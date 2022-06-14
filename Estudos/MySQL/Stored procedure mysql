@@ -1,0 +1,19 @@
+Criacao stored procedure -
+
+DELIMITER//(para n acontecer bugs)
+
+CREATE PROCEDURE 'NomeDaProcedure'()
+
+begin
+
+CONTEUDO
+
+end//
+
+Apagar stored procedure - 
+
+drop procedure <Nome>;
+
+Ver procedure - 
+
+call <nome>

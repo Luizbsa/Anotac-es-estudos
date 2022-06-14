@@ -1,0 +1,90 @@
+Introducão mysql
+
+Tabelas+
+Dentro de um banco de dados nos temos tabelas, as partes horizontais das tabelas são chamadas de registros e as partes horizontais são chamadas de campos, os campos são limitados mas os registros são infinitos, o que eu tenho dentro de um campo sempre são do mesmo tipo. 
+
+Chave Primaria - eu posso definir um campo(opcionalmente) para ser a chave primaria, nesse campo eu n poderei ter a mesma informcão em dois registros do campo escolhido para ser a chave primaria, se a chave primaria for composta, n se pode repetir a combinacão dos campos marcados como chave primaria.
+
+Chave Estrangeira - ligacão entre duas tabelas
+
+Indice - serve para facilitar a busca
+
+Esquema  - grupo de tabelas (tabelas de esquemas diferentes podem se relacionar) é apenas uma questão de comunicacão
+
+View - tabela com consulta de varias tabelas ligadas por chaves estrangeiras.
+
+Trigger - um gatilho para caso algo que eu determinei aconteca
+
+Procedures - codigos que fogem do padrão ANSI para estruturar o codigo
+
+TIPOS DE CAMPO NUMERICO MYSQL
+
+TINYINT - 1byte
+SMALLINT - 2byte
+MEDIUMINT - 3byte
+INT - 4byte
+BIGINT - 8byte
+
+Ponto flutuante  
+
+FLOAT - 4byte  - Precisão simples, arredonda
+DOUBLE - 8byte - Precisão dupla, n arredonda
+DECIMAL ou NUMERIC - guarda até 65 digitos
+BIT - até 64 bits codigo binario 0101
+
+ATRIBUTOS DO CAMPOS NUMERICO
+
+SIGNED - Possui sinal numerico
+UNSIGNED - Não possui sinal numerico
+ZEROFILL - Preenche com zero os espacos 
+AUTO_INCREMENT - Sequencia auto incrementada
+
+TIPOS DE CAMPOS DE DATA E HORA 
+
+DATE - 1000-01-01 até 9999-12-31
+DATETIME - 1000-01-01 00:00:00 até 9999-12-31 23:59:59
+TIMESTAMP - 1970-01-01 00:00:01 UTC até 2038-01-19 UTC
+TIME - -838:59:59 e 839:59:59
+YEAR - 1901 - 2155 (Pode ser expresso em 2 digitos ou 4 digitos)
+
+TIPOS DE CAMPOS DE CARACTERES
+
+CHAR - Cadeia de caracteres com valor fixo (de 0 a 255)
+VARCHAR - Cadeia de caracteres com valor variado (de 0 a 255)
+CHAR(4) "aa" - "  aa"
+VARCHAR(4) "aa" - "aa"
+BINARY - Cadeia de caracteres com valor fixo (de 0 a 255). Expressos em binario 
+VARCHAR - Cadeia de caracteres com valor variado (de 0 a 255). Expresso em binario
+BLOB - Binario longo. podemos ter:
+TINYBLOB
+BLOB
+MEDIUMBLOB
+LONGBLOB
+TEXT - texto longo, podemos ter: 
+TINYTEXT
+TEXT 
+MEDIUMTEXT
+LONGTEXT
+ENUM - permite armazenar uma lista pre-definida de valores
+
+ATRIBUTOS DE CAMPOS DE CARACTERES
+
+SET e COLLATE - que tipo de caracteres serão suportados
+
+TIPOS DE CAMPOS ESPACIAIS
+GEOMETRY
+POINT
+LINESTRING
+POLYGON
+
+TIPOS DE VARIAVEIS MySQL
+VARCHAR ou CHAR - caracteres
+INTEGER - inteiro
+DECIMAL - variavel com decimal
+DATE - data
+TIMESTAMP data e hora
+
+
+
+
+

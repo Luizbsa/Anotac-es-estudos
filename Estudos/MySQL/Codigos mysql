@@ -1,0 +1,110 @@
+Linha de codigo MYSQL
+
+---------------------------------------------------------Criar e Alterar dados--------------------------------------------------------------------
+START TRANSACTION, ROLLBACK, COMMIT
+
+Criat indice - alter table <tblname> add index (Campo) 
+
+Criar uma chave estrangeira - alter table <tblName> add constraint fk_NomeDaRelacao foreign key (NomeCampo) references <tblName> (NomeCampo);
+ 
+Criar delimitador para substituir ";" - delimiter <simbolo> 
+
+Criar Trigger - create trigger <trigger.nome> {after|before} {insert|update|delete} on <tbl.nome> for each row begin [CONTEUDO DA TRIGGER] end
+
+Criar Banco de Dados - create database <bncName>	
+
+Criando Tabelas - create table <tblName>(NomeDoPrimeiroCampo TipoDoPrimeiroCampo, NomeDoSegundoCampo TipoDoSegundoCampo)
+
+Criar variavel - declare <NomeVariavel> TipoDaVariavel default(opcional) ValorDaVariavel;
+
+Criar cursor - declare <NomeCursor> cursor for select * from <tblname>; open <NomeCursor>;(Colocar cursor em variavel) fetch <NomeCursor> into <NomeVariavel>; 
+
+Alterando dados na tabela - update <tblName> set <OqueVoceQuerAlterar> = <NovaInfo> where <NomeDoCampoParaBusca> = <InformacaoDesseCampo>
+
+Alterar o tipo de uma tabela - ALTER TABLE <tblName> MODIFY <columnName> <datetime, varchar etc>;
+
+Alterar nome da tabela - alter table <tblName> rename <newtblName>
+
+Alterando o nome de um campo - alter table <tblName> rename column NomeDoCampo to NovoNomeDoCampo; 
+
+Alterar valor da variavel - set <Nome> = NovoValor
+
+Apagar indice - alter table <tblname> drop index (Campo) 
+
+Apagando Banco de dados - drop database NomeDoBanco
+
+Apagando Tabelas - drop table <tblName>
+
+Apagando registros - delete from <tblName> where <NomeDoPrimeiroCampo> = 'InformacaoDoPrimeiroCampo'
+
+Definir chave primaria pós criacão da Tabela - alter table <tblName> add primary key (NomeDoCampo)
+
+Inserir um novo campo em uma tabela - alter table <tblName> add columns (NomeDoCampo TipoDeDado)
+
+Inserindo dados na tabela - insert into <tblName> (NomeDoPrimeiroCampo, NomeDoSegundoCampo) values ('Informacao', 'Informacao'); {PODEMOS COLOCAR UM DEFAULT } 
+	
+
+Tratar erro de forma amigavel - declare exit handler for <numerodoerro> begin (CONTEUDO) end
+
+se, senão - if (condicão) then (Oque vai acontecer); elseif (condicao) then (oque vai acontecer)  else (O que vai acontecer); end if
+
+looping com while - while (condicao) do (Acão); end while;
+
+Tratar erro de Not found - declare continue handler for not found (acao)
+
+caso, when(é como um for igual),senao - case <campo> when (Nome) then select(vai acontecer) else (vai acontecer) end case
+----------------------------------------------------------------Visualizacão----------------------------------------------------------------------
+
+Mostrar todos os dados - select * from NomeDatabela;
+
+Mostrar um numero limitado de dados - select * from NomeDatabela limit NumeroDeDadosEscolhido;
+
+Fantasiar o nome dos campos - select * from NomeDatabela as NomeFantasiaProDado;
+
+Mostrar Apenas os dados que vc escolher - select RegistroDesejado1, RegistroDesejado2 from NomeDatabela;
+
+Selecionar apenas os dados de um registro - select * from NomeDaTabela where CampoParaFiltro = InformacaoDoFiltro (pode trocar o sinal de = por like >, <);
+
+Ordenar dados apresentados - select * from NomeDaTabela order by NomeDoCampo asc(ou desc);
+
+Agrupar dados - select NomeDoCampo1 sum(NomeDoCampo2) as NomeFantasia from NomeDaTabela group by NomeDoCampo1; (sum, max, min, avg e count) 
+
+Having é usado no lugar do where -  select NomeDoCampo1 sum(NomeDoCampo2) as NomeFantasia from NomeDaTabela group by NomeDoCampo1 having sum(NomeDoCampo2) > filtro;
+
+Case, when e then - select NomeDoCampo1, case when NomeDoCampo2 > 10 then 'O que vai aparecer' else 'o que vai aparecer' end as 'NomeFantasia' from NomeDaTabela;
+
+JOINS 
+
+JOINs -> possibilidade de unir uma tabela com outra através de campos em comuns
+INNER JOIN - Retorna somente quanto temos chaves correspondentes
+LEFT JOIN - Retorna todos da tabela da esquerda e somente os correspondentes da tabela da direita
+RIGHT JOIN - Retorna todos da tabela da direita e somente os correspondentes da tabela da esquerda
+FULL JOIN - Retorna todos os registros idependente de ser correspondente ou não
+CROSS JOIN - Retorna todas as combinacoes
+
+
+select * from  tabela_de_vendedores A inner join notas_fiscais B on A.MATRICULA = B.MATRICULA  ;
+select A.MATRICULA, B.MATRICULA from tabela_de_vendedores A inner join notas_fiscais B on A.MATRICULA = B.MATRICULA;  
+
+----------------------------------------------------------------------Administrar-----------------------------------------------------------------
+
+Entrar no mysql pelo terminal - mysql -h localhost -u root -p
+
+Fazer backup pelo terminal - mysqldump -uroot -p --databases <BncName> --tables <NomeDaTabela> > <LocalParaArmazenar>/<nomedoarquivo>
+
+congelar banco de dados para backup - lock instance for backupl
+
+descongelar banco de dados - unlock instance;
+
+ver o custo - explain format=json <codigo> \g
+
+Simular uma quantidade de acessos - mysqlslap -uroot -p --concurrency = (quantos acessos) iterations = (quantas interacoes) --create-schema= (bncname) --query= "COMANDO"
+
+Criar usuario = create user <Nome> @ <OndeElePodeAcessar> identified by <senha>; 
+Dar privilegios de DBA = grant all privileges on *.* to <nome> @ <PorOndeElePodeAcessar> with grant option;
+Apagar usuario = drop <Nome> @ <LocalOndeEleAcessa>;
+Dar privilegios normais = grant <O que ele pode fazer> on <bncquepodeacessar>.<tblquepodeacessar> to <nome> @ <PorOndeElePodeAcessar> ;
+ver os usuarios - select* from mysql.user;
+ver o comando com os privilegios do usuarios - show grants for <Nomedousuario> @ <localporondeeleacessa>;
+Retirar privilegios de um usuario - revoke all privileges, grant option from  <Nomedousuario> @ <localporondeeleacessa>;
+
